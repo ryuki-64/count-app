@@ -1,0 +1,19 @@
+button:disabled {
+    background-color: gray;
+    color: white;
+}
+
+button {
+    margin: 5px;
+    padding: 10px;
+}
+
+button:hover {
+    background-color: lightblue;
+    cursor: pointer;
+}
+
+body {
+    text-align: center;
+    font-family: sans-serif;
+}

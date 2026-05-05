@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    
+    
+
+    <head>
+        <title>カウントアプリ</title>
+        <link rel="stylesheet" href="style.css">
+
+    </head>
+    <body>
+        <h2>カウントアプリ</h2>
+        <input type="number" id="startNumber" placeholder="0~100で入力">
+        <button onclick="setStart()">セット</button>
+
+        <h1 id="count">0</h1>
+
+        <button id="plusBtn" onclick="countUp()">+1</button>
+        <button id="minusBtn" onclick="countDown()">-1</button>
+        <button id="plus10Btn" onclick="addTen()">+10</button>
+        <button onclick="reset()">リセット</button>
+
+        <script>
+
+            function setStart() {
+                let input = document.getElementById("startNumber").value;
+                number = Number(input);
+
+                if(number < 0) number = 0;
+                if(number > 100) number = 100;
+
+                updateDisplay();
+            }
+            let number = 0;
+
+            function countUp() {
+                if (number < 100) {
+                    number++;
+                    updateDisplay();
+                }
+            }
+
+            function countDown(){
+                if (number > 0) {
+                    number--;
+                    updateDisplay();
+                }
+            }
+
+            function addTen() {
+                if (number + 10 <= 100) {
+                    number += 10;
+                } else {
+                    number = 100;
+                }
+                updateDisplay();
+            }
+
+            function reset() {
+                number = 0;
+                updateDisplay();
+            }
+
+            function updateDisplay() {
+                document.getElementById("count").textContent = number;
+
+                if (number === 100) {
+                    document.getElementById("plusBtn").disabled = true;
+                    document.getElementById("plus10Btn").disabled = true;
+                } else {
+                    document.getElementById("plusBtn").disabled = false;
+                    document.getElementById("plus10Btn").disabled = false;
+                }
+
+                if (number === 0) {
+                  document.getElementById("minusBtn").disabled = true;  
+                } else {
+                  document.getElementById("minusBtn").disabled = false;  
+                }
+            }
+
+            updateDisplay();
+
+        </script>
+    </body> 
+    </html>
