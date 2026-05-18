@@ -10,8 +10,8 @@
     </head>
     <body>
         <h2>カウントアプリ</h2>
-        <input type="number" id="startNumber" placeholder="0~100で入力">
-        <button onclick="setStart()">セット</button>
+        <input type="number" id="startNumber" placeholder="0~100で入力" oninput="checkInput()">
+        <button id="setBtn" onclick="setStart()">セット</button>
 
         <h1 id="count">0</h1>
 
@@ -19,8 +19,23 @@
         <button id="minusBtn" onclick="countDown()">-1</button>
         <button id="plus10Btn" onclick="addTen()">+10</button>
         <button onclick="reset()">リセット</button>
+        <button onclick="startAuto()">自動+</button>
+        <button onclick="stopAuto()">停止</button>
 
         <script>
+
+            function checkInput(){
+               let input = Number(document.getElementById("startNumber").value);
+
+               if(input < 0|| input >100){
+                document.getElementById("setBtn").disabled = true;  
+                } else {
+                  document.getElementById("setBtn").disabled = false;  
+                }
+
+                }
+ 
+
 
             function setStart() {
                 let input = document.getElementById("startNumber").value;
@@ -32,6 +47,20 @@
                 updateDisplay();
             }
             let number = 0;
+
+            let timer;
+            function startAuto(){
+                timer = setInterval(function (){
+
+                    if (number < 100) {
+                        number++;
+                        updateDisplay();
+                    }
+                }, 1000);
+            }
+            function stopAuto(){
+                clearInterval(timer);
+            }
 
             function countUp() {
                 if (number < 100) {
@@ -77,6 +106,8 @@
                 } else {
                   document.getElementById("minusBtn").disabled = false;  
                 }
+
+                
             }
 
             updateDisplay();
